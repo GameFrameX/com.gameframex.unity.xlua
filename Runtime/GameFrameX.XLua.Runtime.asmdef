@@ -1,0 +1,22 @@
+{
+    "name": "GameFrameX.XLua.Runtime",
+    "references": [
+        "GameFrameX.Runtime",
+        "XLua.Runtime"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": true,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [
+        {
+            "name": "com.gameframex.unity.tencent.xlua",
+            "expression": "",
+            "define": "ENABLE_TENCENT_XLUA"
+        }
+    ],
+    "noEngineReferences": false
+}
