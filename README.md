@@ -1,156 +1,253 @@
 ﻿## HOMEPAGE
 
-GameFrameX 的Web 请求组件
+GameFrameX 的 XLua 组件
 
-**Web 请求 组件 (Web Request)** - 提供使用短连接的功能，可以用 Get 或者 Post 方法向服务器发送请求并获取响应数据，可指定允许几个 Web 请求器进行同时请求。
+** XLua 组件 (XLua Component)** - 提供了执行 Lua 代码、加载 Lua 脚本、管理 Lua 环境等操作的接口。
 
 # 使用文档(文档编写于GPT4)
 
-# WebComponent 说明文档
+# XLuaComponent 说明文档
 
-`WebComponent` 类是一个游戏框架组件，用作处理网络请求的模块。它提供了一系列方法来发送 GET 和 POST 请求，并获取返回的字符串或字节数组数据。以下是该类的详细说明和使用方法。
+`XLuaComponent` 是一个用于集成 XLua 功能的组件，提供了执行 Lua 代码、加载 Lua 脚本、管理 Lua 环境等操作的接口。
 
 ## 功能概述
 
-- 初始化网络管理器
-- 发送 GET 请求并获取返回的字符串或字节数组
-- 发送 POST 请求并获取返回的字符串或字节数组
+- 环境管理：初始化和清理 Lua 环境。
+- 执行脚本：运行 Lua 代码字符串或字节码。
+- 加载代码：加载 Lua 脚本并获取可执行的函数。
+- 扩展功能：添加自定义函数和类型别名，增强 Lua 的能力。
+- 自定义加载器：支持从不同来源加载 Lua 脚本。
+- 数据操作：创建和操作 Lua 表。
+- 内存管理：控制 Lua 的垃圾回收机制。
 
 ## 方法说明
 
 ### Awake
 
-初始化游戏框架组件。创建 `WebManager` 实例并获取网络管理器模块。
+初始化组件，获取 Lua 管理器实例并初始化 Lua 环境。
 
-```csharp
-protected override void Awake() { /* 方法体省略 */ }
-```
+**参数**：
+无
 
-### GetToString（重载1）
+**返回值**：
+无
 
-发送 GET 请求并以字符串形式获取响应。
+---
 
-```csharp
-public Task<string> GetToString(string url) { /* 方法体省略 */ }
-```
+### DoString(string lua, string chunkName = "chunk", LuaTable env = null)
 
-### GetToString（重载2）
+执行 Lua 代码字符串。
 
-发送带参数的 GET 请求并以字符串形式获取响应。
+**参数**：
 
-```csharp
-public Task<string> GetToString(string url, Dictionary<string, string> queryString) { /* 方法体省略 */ }
-```
+- `lua`: Lua 代码字符串。
+- `chunkName`: 代码块名称，默认为 "chunk"。
+- `env`: Lua 环境表，默认为 null。
 
-### GetToString（重载3）
+**返回值**：
+执行结果数组。
 
-发送带参数和请求头的 GET 请求并以字符串形式获取响应。
+---
 
-```csharp
-public Task<string> GetToString(string url, Dictionary<string, string> queryString, Dictionary<string, string> header) { /* 方法体省略 */ }
-```
+### DoString(byte[] luaBytes, string chunkName = "chunk", LuaTable env = null)
 
-### GetToBytes（重载1）
+执行 Lua 字节数组。
 
-发送 GET 请求并以字节数组形式获取响应。
+**参数**：
 
-```csharp
-public Task<byte[]> GetToBytes(string url) { /* 方法体省略 */ }
-```
+- `luaBytes`: Lua 字节数组。
+- `chunkName`: 代码块名称，默认为 "chunk"。
+- `env`: Lua 环境表，默认为 null。
 
-### GetToBytes（重载2）
+**返回值**：
+执行结果数组。
 
-发送带参数的 GET 请求并以字节数组形式获取响应。
+---
 
-```csharp
-public Task<byte[]> GetToBytes(string url, Dictionary<string, string> queryString) { /* 方法体省略 */ }
-```
+### LoadString(string lua, string chunkName = "chunk", LuaTable env = null)
 
-### GetToBytes（重载3）
+加载 Lua 代码字符串。
 
-发送带参数和请求头的 GET 请求并以字节数组形式获取响应。
+**参数**：
 
-```csharp
-public Task<byte[]> GetToBytes(string url, Dictionary<string, string> queryString, Dictionary<string, string> header) { /* 方法体省略 */ }
-```
+- `lua`: Lua 代码字符串。
+- `chunkName`: 代码块名称，默认为 "chunk"。
+- `env`: Lua 环境表，默认为 null。
 
-### PostToString（重载1）
+**返回值**：
+加载的 Lua 函数。
 
-发送 POST 请求并以字符串形式获取响应。
+---
 
-```csharp
-public Task<string> PostToString(string url, Dictionary<string, string> from = null) { /* 方法体省略 */ }
-```
+### LoadString<T>(string lua, string chunkName = "chunk", LuaTable env = null)
 
-### PostToString（重载2）
+加载 Lua 代码字符串并返回指定类型。
 
-发送带表单和 URL 请求参数的 POST 请求并以字符串形式获取响应。
+**参数**：
 
-```csharp
-public Task<string> PostToString(string url, Dictionary<string, string> from, Dictionary<string, string> queryString) { /* 方法体省略 */ }
-```
+- `lua`: Lua 代码字符串。
+- `chunkName`: 代码块名称，默认为 "chunk"。
+- `env`: Lua 环境表，默认为 null。
 
-### PostToString（重载3）
+**返回值**：
+加载的 Lua 函数，类型为 T。
 
-发送带表单、URL 请求参数和请求头的 POST 请求并以字符串形式获取响应。
+---
 
-```csharp
-public Task<string> PostToString(string url, Dictionary<string, string> from, Dictionary<string, string> queryString, Dictionary<string, string> header) { /* 方法体省略 */ }
-```
+### AddBuildIn(string buildInName, lua_CSFunction init)
 
-### PostToBytes（重载1）
+添加内置函数。
 
-发送 POST 请求并以字节数组形式获取响应。
+**参数**：
 
-```csharp
-public Task<byte[]> PostToBytes(string url, Dictionary<string, string> from) { /* 方法体省略 */ }
-```
+- `buildInName`: 内置函数名称。
+- `init`: 初始化函数。
 
-### PostToBytes（重载2）
+**返回值**：
+无
 
-发送带表单和 URL 请求参数的 POST 请求并以字节数组形式获取响应。
+---
 
-```csharp
-public Task<byte[]> PostToBytes(string url, Dictionary<string, string> from, Dictionary<string, string> queryString) { /* 方法体省略 */ }
-```
+### AddLoader(LuaEnv.CustomLoader loader)
 
-### PostToBytes（重载3）
+添加自定义加载器。
 
-发送带表单、URL 请求参数和请求头的 POST 请求并以字节数组形式获取响应。
+**参数**：
 
-```csharp
-public Task<byte[]> PostToBytes(string url, Dictionary<string, string> from, Dictionary<string, string> queryString, Dictionary<string, string> header) { /* 方法体省略 */ }
-```
+- `loader`: 自定义加载器。
 
-## 使用示例
+**返回值**：
+无
 
-1. 调用 `GetToString` 方法获取不带参数的 GET 请求响应字符串：
+---
 
-```csharp
-Task<string> response = webComponent.GetToString("http://example.com/api/values");
-```
+### NewTable()
 
-2. 使用 `PostToBytes` 方法发送带表单参数的 POST 请求，并以字节数组接收响应：
+创建新的 Lua 表。
 
-```csharp
-Dictionary<string, string> formData = new Dictionary<string, string>
-{
-    { "param1", "value1" },
-    { "param2", "value2" }
-};
-Task<byte[]> responseBytes = webComponent.PostToBytes("http://example.com/api/upload", formData);
-```
+**参数**：
+无
 
-## 注意事项
+**返回值**：
+新的 Lua 表。
 
-确保在网络请求期间合适地处理任务，例如使用 `await` 异步等待结果。
+---
+
+### Dispose()
+
+释放 Lua 环境。
+
+**参数**：
+无
+
+**返回值**：
+无
+
+---
+
+### GetGlobal()
+
+获取全局 Lua 表。
+
+**参数**：
+无
+
+**返回值**：
+全局 Lua 表。
+
+---
+
+### Tick()
+
+进行一次 Lua 垃圾回收。
+
+**参数**：
+无
+
+**返回值**：
+无
+
+---
+
+### Alias(Type type, string alias)
+
+为指定类型添加别名。
+
+**参数**：
+
+- `type`: 指定类型。
+- `alias`: 类型别名。
+
+**返回值**：
+无
+
+---
+
+### GC()
+
+执行一次 Lua 垃圾回收。
+
+**参数**：
+无
+
+**返回值**：
+无
+
+---
+
+### RestartGc()
+
+重新启动 Lua 垃圾回收。
+
+**参数**：
+无
+
+**返回值**：
+无
+
+---
+
+### FullGc()
+
+进行一次完整 Lua 垃圾回收。
+
+**参数**：
+无
+
+**返回值**：
+无
+
+---
+
+### GcStep(int data)
+
+执行 Lua 垃圾回收一步。
+
+**参数**：
+
+- `data`: 回收数据。
+
+**返回值**：
+无
+
+---
+
+### StopGc()
+
+停止 Lua 垃圾回收。
+
+**参数**：
+无
+
+**返回值**：
+无
 
 # 使用方式(任选其一)
 
 1. 直接在 `manifest.json` 的文件中的 `dependencies` 节点下添加以下内容
    ```json
-      {"com.gameframex.unity.web": "https://github.com/AlianBlank/com.gameframex.unity.web.git"}
+      {"com.gameframex.unity.xlua": "https://github.com/AlianBlank/com.gameframex.unity.xlua.git"}
     ```
-2. 在Unity 的`Packages Manager` 中使用`Git URL` 的方式添加库,地址为：https://github.com/AlianBlank/com.gameframex.unity.web.git
+2. 在Unity 的`Packages Manager` 中使用`Git URL` 的方式添加库,地址为：https://github.com/AlianBlank/com.gameframex.unity.xlua.git
 
 3. 直接下载仓库放置到Unity 项目的`Packages` 目录下。会自动加载识别
