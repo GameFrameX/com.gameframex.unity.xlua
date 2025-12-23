@@ -3,14 +3,14 @@
   "displayName": "Game Frame X XLua",
   "category": "Game Framework X",
   "description": "Game Frame X XLua Component",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "unity": "2019.4",
   "keywords": [
     "Game Framework X"
   ],
   "repository": {
     "name": "com.gameframex.unity.xlua",
-    "url": "https://github.com/gameframex/com.gameframex.unity.xlua.git",
+    "url": "git+https://github.com/gameframex/com.gameframex.unity.xlua.git",
     "type": "git"
   },
   "author": {

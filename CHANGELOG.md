@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/gameframex/com.gameframex.unity.xlua/compare/1.0.1...1.1.0) (2025-12-23)
+
+
+### Features
+
+* **ci:** change ci ([ff387b5](https://github.com/gameframex/com.gameframex.unity.xlua/commit/ff387b53bd1ced2da416e3d6289010d843964d7c))
+
 # Changelog
 
 ## [1.0.1](https://github.com/GameFrameX/com.gameframex.unity.xlua/tree/1.0.1) (2025-05-31)
