@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/gameframex/com.gameframex.unity.xlua/compare/1.1.0...1.1.1) (2026-07-30)
+
+
+### Bug Fixes
+
+* 添加依赖项 com.gameframex.unity 和 com.gameframex.unity.tencent.xlua ([6f4fad6](https://github.com/gameframex/com.gameframex.unity.xlua/commit/6f4fad601ae78fb4f2fcc020ab551165a09121ae))
+
 # [1.1.0](https://github.com/gameframex/com.gameframex.unity.xlua/compare/1.0.1...1.1.0) (2025-12-23)
 
 
